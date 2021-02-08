@@ -1,0 +1,59 @@
+query Contributor($id: Int!) {
+  contributor(id: $id) {
+    id
+  }
+}
+
+query Project($id: Int!) {
+  project(id: $id) {
+    id
+    name
+  }
+}
+
+query Projects {
+  projects {
+    id
+    name
+  }
+}
+
+query AllContributorsAndContributorsByProject($id: Int!) {
+  contributors {
+    id
+    full_name
+  }
+
+  project_contributors(id: $id) {
+    id
+    full_name
+  }
+}
+
+query Contributors {
+  contributors {
+    id
+    full_name
+    code
+    allocation
+    picture
+    email
+    active
+    projects {
+      name
+    }
+  }
+}
+
+query AllContributorsProtracksByProject($id: Int!) {
+  project_contributors(id: $id) {
+    id
+    full_name
+    picture
+    protracks {
+      id
+      issue
+      description
+    }
+  }
+}

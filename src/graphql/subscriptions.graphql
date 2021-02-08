@@ -1,0 +1,10 @@
+subscription OnProtrackAdded($projectId: Int!) {
+  protrackAdded(projectId: $projectId) {
+    id
+    issue
+    description
+    user {
+      id
+    }
+  }
+}

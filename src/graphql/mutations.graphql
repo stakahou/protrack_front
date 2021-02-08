@@ -1,0 +1,45 @@
+mutation Login($access_token: String!) {
+  googleLogin(access_token: $access_token) {
+    first_name
+    last_name
+    email
+    picture
+    role
+    active
+    token
+  }
+}
+
+mutation CreateProject($data: CreateProjectInput!) {
+  create_project(data: $data) {
+    id
+    name
+  }
+}
+
+mutation UpdateProject($id: Int!, $data: UpdateProjectInput!) {
+  update_project(id: $id, data: $data) {
+    id
+    name
+  }
+}
+
+mutation UpdateContributor($id: Int!, $data: UpdateUserInput!) {
+  update_contributor(id: $id, data: $data) {
+    id
+    full_name
+    code
+    allocation
+    picture
+    email
+    active
+  }
+}
+
+mutation AddProjectContributors($projectId: Int!, $contributorIds: [Int!]!) {
+  add_contributors(projectId: $projectId, contributorIds: $contributorIds)
+}
+
+mutation RemoveProjectContributors($projectId: Int!, $contributorIds: [Int!]!) {
+  remove_contributors(projectId: $projectId, contributorIds: $contributorIds)
+}
