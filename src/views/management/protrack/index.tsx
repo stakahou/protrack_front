@@ -27,14 +27,13 @@ export const Protrack = () => {
   });
 
   useEffect(() => {
-    if (subscribeToMore && currentProject) {
-      console.log("aqui");
-      subscribeToMore({
+    let unsubscribe: any;
+
+    if (subscribeToMore && currentProject && !loading) {
+      unsubscribe = subscribeToMore({
         document: OnProtrackAddedDocument,
         variables: { projectId: currentProject.value },
         updateQuery: (prev, { subscriptionData }: any) => {
-          console.log("subscriptionData :>> ", subscriptionData);
-          console.log("prev :>> ", prev);
           if (!subscriptionData.data?.protrackAdded) return prev;
 
           const { user, ...protrack } = subscriptionData.data.protrackAdded;
@@ -52,8 +51,10 @@ export const Protrack = () => {
       });
     }
 
-    return () => {};
-  }, [subscribeToMore, currentProject]);
+    return () => {
+      unsubscribe && unsubscribe();
+    };
+  }, [subscribeToMore, currentProject, loading]);
 
   useEffect(() => {
     if (currentProject) {
