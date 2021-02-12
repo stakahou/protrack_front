@@ -43,3 +43,11 @@ mutation AddProjectContributors($projectId: Int!, $contributorIds: [Int!]!) {
 mutation RemoveProjectContributors($projectId: Int!, $contributorIds: [Int!]!) {
   remove_contributors(projectId: $projectId, contributorIds: $contributorIds)
 }
+
+mutation AddProtrack($projectId: Int!, $protracks: [CreateProtrackInput!]!) {
+  add_protrack(projectId: $projectId, protracks: $protracks) {
+    id
+    issue
+    description
+  }
+}

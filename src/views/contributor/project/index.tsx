@@ -1,8 +1,4 @@
-import {
-  faCog,
-
-  faProjectDiagram
-} from "@fortawesome/free-solid-svg-icons";
+import { faCog, faProjectDiagram } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";

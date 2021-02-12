@@ -2,7 +2,7 @@ import {
   ApolloClientOptions,
   createHttpLink,
   InMemoryCache,
-  split
+  split,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { WebSocketLink } from "@apollo/client/link/ws";
@@ -15,7 +15,7 @@ const httpLink = createHttpLink({
 });
 
 const getToken = () => {
-  const token = localStorage.getItem("app-token1");
+  const token = localStorage.getItem("@session");
   if (!token) return "";
   return `Bearer ${JSON.parse(token)}`;
 };

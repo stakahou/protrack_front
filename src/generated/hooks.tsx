@@ -306,6 +306,57 @@ export type RemoveProjectContributorsMutationOptions = Apollo.BaseMutationOption
   Types.RemoveProjectContributorsMutation,
   Types.RemoveProjectContributorsMutationVariables
 >;
+export const AddProtrackDocument = gql`
+  mutation AddProtrack($projectId: Int!, $protracks: [CreateProtrackInput!]!) {
+    add_protrack(projectId: $projectId, protracks: $protracks) {
+      id
+      issue
+      description
+    }
+  }
+`;
+export type AddProtrackMutationFn = Apollo.MutationFunction<
+  Types.AddProtrackMutation,
+  Types.AddProtrackMutationVariables
+>;
+
+/**
+ * __useAddProtrackMutation__
+ *
+ * To run a mutation, you first call `useAddProtrackMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddProtrackMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addProtrackMutation, { data, loading, error }] = useAddProtrackMutation({
+ *   variables: {
+ *      projectId: // value for 'projectId'
+ *      protracks: // value for 'protracks'
+ *   },
+ * });
+ */
+export function useAddProtrackMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    Types.AddProtrackMutation,
+    Types.AddProtrackMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    Types.AddProtrackMutation,
+    Types.AddProtrackMutationVariables
+  >(AddProtrackDocument, baseOptions);
+}
+export type AddProtrackMutationHookResult = ReturnType<
+  typeof useAddProtrackMutation
+>;
+export type AddProtrackMutationResult = Apollo.MutationResult<Types.AddProtrackMutation>;
+export type AddProtrackMutationOptions = Apollo.BaseMutationOptions<
+  Types.AddProtrackMutation,
+  Types.AddProtrackMutationVariables
+>;
 export const ContributorDocument = gql`
   query Contributor($id: Int!) {
     contributor(id: $id) {
@@ -654,6 +705,66 @@ export type AllContributorsProtracksByProjectLazyQueryHookResult = ReturnType<
 export type AllContributorsProtracksByProjectQueryResult = Apollo.QueryResult<
   Types.AllContributorsProtracksByProjectQuery,
   Types.AllContributorsProtracksByProjectQueryVariables
+>;
+export const ProtracksByProjectAndWeekDocument = gql`
+  query ProtracksByProjectAndWeek($projectId: Int!, $week: Int!, $year: Int!) {
+    protracks(projectId: $projectId, week: $week, year: $year) {
+      id
+      issue
+      description
+    }
+  }
+`;
+
+/**
+ * __useProtracksByProjectAndWeekQuery__
+ *
+ * To run a query within a React component, call `useProtracksByProjectAndWeekQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProtracksByProjectAndWeekQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProtracksByProjectAndWeekQuery({
+ *   variables: {
+ *      projectId: // value for 'projectId'
+ *      week: // value for 'week'
+ *      year: // value for 'year'
+ *   },
+ * });
+ */
+export function useProtracksByProjectAndWeekQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    Types.ProtracksByProjectAndWeekQuery,
+    Types.ProtracksByProjectAndWeekQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    Types.ProtracksByProjectAndWeekQuery,
+    Types.ProtracksByProjectAndWeekQueryVariables
+  >(ProtracksByProjectAndWeekDocument, baseOptions);
+}
+export function useProtracksByProjectAndWeekLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    Types.ProtracksByProjectAndWeekQuery,
+    Types.ProtracksByProjectAndWeekQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    Types.ProtracksByProjectAndWeekQuery,
+    Types.ProtracksByProjectAndWeekQueryVariables
+  >(ProtracksByProjectAndWeekDocument, baseOptions);
+}
+export type ProtracksByProjectAndWeekQueryHookResult = ReturnType<
+  typeof useProtracksByProjectAndWeekQuery
+>;
+export type ProtracksByProjectAndWeekLazyQueryHookResult = ReturnType<
+  typeof useProtracksByProjectAndWeekLazyQuery
+>;
+export type ProtracksByProjectAndWeekQueryResult = Apollo.QueryResult<
+  Types.ProtracksByProjectAndWeekQuery,
+  Types.ProtracksByProjectAndWeekQueryVariables
 >;
 export const OnProtrackAddedDocument = gql`
   subscription OnProtrackAdded($projectId: Int!) {

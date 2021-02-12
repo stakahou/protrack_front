@@ -71,6 +71,20 @@ export type RemoveProjectContributorsMutation = {
   __typename?: "Mutation";
 } & Pick<Types.Mutation, "remove_contributors">;
 
+export type AddProtrackMutationVariables = Types.Exact<{
+  projectId: Types.Scalars["Int"];
+  protracks: Array<Types.CreateProtrackInput> | Types.CreateProtrackInput;
+}>;
+
+export type AddProtrackMutation = { __typename?: "Mutation" } & {
+  add_protrack: Array<
+    { __typename?: "Protrack" } & Pick<
+      Types.Protrack,
+      "id" | "issue" | "description"
+    >
+  >;
+};
+
 export type ContributorQueryVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
@@ -150,6 +164,21 @@ export type AllContributorsProtracksByProjectQuery = {
           >
         >;
       }
+  >;
+};
+
+export type ProtracksByProjectAndWeekQueryVariables = Types.Exact<{
+  projectId: Types.Scalars["Int"];
+  week: Types.Scalars["Int"];
+  year: Types.Scalars["Int"];
+}>;
+
+export type ProtracksByProjectAndWeekQuery = { __typename?: "Query" } & {
+  protracks: Array<
+    { __typename?: "Protrack" } & Pick<
+      Types.Protrack,
+      "id" | "issue" | "description"
+    >
   >;
 };
 

@@ -24,6 +24,8 @@ export type Protrack = {
   update_at: Scalars["DateTime"];
   issue: Scalars["String"];
   description: Scalars["String"];
+  week: Scalars["Int"];
+  year: Scalars["Int"];
   user: User;
 };
 
@@ -92,6 +94,12 @@ export type QueryProtrackArgs = {
   id: Scalars["Int"];
 };
 
+export type QueryProtracksArgs = {
+  year: Scalars["Int"];
+  week: Scalars["Int"];
+  projectId: Scalars["Int"];
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   update_contributor: User;
@@ -101,7 +109,7 @@ export type Mutation = {
   remove_project: Project;
   add_contributors: Scalars["Boolean"];
   remove_contributors: Scalars["Boolean"];
-  add_protrack: Protrack;
+  add_protrack: Array<Protrack>;
 };
 
 export type MutationUpdate_ContributorArgs = {
@@ -137,9 +145,8 @@ export type MutationRemove_ContributorsArgs = {
 };
 
 export type MutationAdd_ProtrackArgs = {
-  protrack: CreateProtrackInput;
+  protracks: Array<CreateProtrackInput>;
   projectId: Scalars["Int"];
-  contributorId: Scalars["Int"];
 };
 
 export type UpdateUserInput = {
@@ -156,8 +163,11 @@ export type UpdateProjectInput = {
 };
 
 export type CreateProtrackInput = {
+  id?: Maybe<Scalars["Int"]>;
   issue: Scalars["String"];
   description: Scalars["String"];
+  week: Scalars["Int"];
+  year: Scalars["Int"];
 };
 
 export type Subscription = {

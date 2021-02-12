@@ -53,6 +53,7 @@ export const ProtrackForm = forwardRef<FormHandles, Props>(
             .fill(null)
             .map((_, i) => (
               <Scope path={`protracks[${i}]`} key={i}>
+                <InputForm name="id" hidden />
                 <Row form key={i}>
                   <Col md={2}>
                     <FormGroup>

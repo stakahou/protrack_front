@@ -57,3 +57,11 @@ query AllContributorsProtracksByProject($id: Int!) {
     }
   }
 }
+
+query ProtracksByProjectAndWeek($projectId: Int!, $week: Int!, $year: Int!) {
+  protracks(projectId: $projectId, week: $week, year: $year) {
+    id
+    issue
+    description
+  }
+}
